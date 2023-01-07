@@ -81,8 +81,7 @@ __kernel void median_filter_ocl_int(__global unsigned char* gInput,
                 buffer[fy*5 + fx] = (in_shmem[threadIdx.y + fy][threadIdx.x + fx][rgb]);  
             }
         }
-
-        // sort here
+    
             sort_2(buffer[1],buffer[0], tmp); // sort #1
             sort_2(buffer[3],buffer[2], tmp); // sort #2
             sort_2(buffer[5],buffer[4], tmp); // sort #3
@@ -224,10 +223,8 @@ __kernel void median_filter_ocl_int(__global unsigned char* gInput,
             sort_2(buffer[22],buffer[21], tmp); // sort #139
             sort_2(buffer[24],buffer[23], tmp); // sort #140
 
-        sort_result[rgb] = buffer[12]; // unsorted
+        sort_result[rgb] = buffer[12];
     }
-
-
 
   int out_idx = (row*imgWidth + col) * 3;
   #pragma unroll 3
